@@ -31,7 +31,8 @@ jobs:
       env:
         ECR_REGISTRY: ${{ vars.ECR_REGISTRY_ID }}
         ECR_REPOSITORY: ${{ vars.ECR_REPOSITORY }}
-        IMAGE_TAG: ${{ github.repository }}-${{ github.run_number }}
+        IMAGE_TAG: ${{ github.run_number }}
       run: |
         docker build -t test .
+        docker tag test:$IMAGE_TAG
         docker push test
